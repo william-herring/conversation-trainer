@@ -1,4 +1,5 @@
-import { TextField, FormControl, InputLabel, Select, MenuItem, Button } from "@mui/material";
+import { TextField, FormControl, InputLabel, Select, MenuItem, Button, ButtonGroup } from "@mui/material";
+import SettingsIcon from '@mui/icons-material/Settings';
 import Head from "next/head";
 import { useState } from "react";
 import languages from "@/languages/constants";
@@ -29,7 +30,10 @@ export default function Home() {
           </Select>
         </FormControl>
         <TextField label="Title" defaultValue="Untitled" variant="filled" onChange={(e) => setTitle(e.target.value)} />
-        <Button className="ml-auto right-0" variant="contained">Start</Button>
+        <ButtonGroup className="ml-auto right-0" variant="contained">
+          <Button><SettingsIcon /></Button>
+          <Button>Start</Button>
+        </ButtonGroup>
       </div>
     </main>
   );
