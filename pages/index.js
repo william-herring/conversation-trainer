@@ -3,6 +3,8 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import Head from "next/head";
 import { useState } from "react";
 import languages from "@/languages/constants";
+import Draggable from 'react-draggable';
+
 
 export default function Home() {
   const [title, setTitle] = useState('Untitled')
@@ -34,6 +36,11 @@ export default function Home() {
           <Button><SettingsIcon /></Button>
           <Button>Start</Button>
         </ButtonGroup>
+      </div>
+      <div className="flex z-10 w-screen h-screen justify-center items-center">
+        <Draggable>
+          <div>Example</div>
+        </Draggable>
       </div>
     </main>
   );
