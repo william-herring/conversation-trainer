@@ -1,4 +1,4 @@
-import { TextField, FormControl, InputLabel, Select, MenuItem, Button, ButtonGroup } from "@mui/material";
+import { TextField, FormControl, InputLabel, Select, MenuItem, Button, ButtonGroup, Card } from "@mui/material";
 import SettingsIcon from '@mui/icons-material/Settings';
 import Head from "next/head";
 import { useState } from "react";
@@ -39,7 +39,7 @@ export default function Home() {
       </div>
       <div className="flex z-10 w-screen h-screen justify-center items-center">
         <Draggable>
-          <div>Example</div>
+          <Card className="p-3" variant="outlined">Parlez-moi de votre famille.</Card>
         </Draggable>
       </div>
     </main>
