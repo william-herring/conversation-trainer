@@ -1,21 +1,24 @@
-import { TextField, FormControl, InputLabel, Select, MenuItem, Button, ButtonGroup, Card } from "@mui/material";
+import { TextField, FormControl, InputLabel, Select, MenuItem, Button, ButtonGroup, IconButton } from "@mui/material";
 import SettingsIcon from '@mui/icons-material/Settings';
 import Head from "next/head";
 import { useState } from "react";
 import languages from "@/languages/constants";
-import Draggable from 'react-draggable';
-
+import Question from "@/components/Question";
+import Draggable from "react-draggable";
 
 export default function Home() {
-  const [title, setTitle] = useState('Untitled')
-  const [language, setLanguage] = useState('FR')
+  const [title, setTitle] = useState('Untitled');
+  const [language, setLanguage] = useState('FR');
+  const [answersQuestions, setAnswersQuestions] = useState({
+    "Ma famille, c'est pas une grande famille.": ["Parez-moi de votre famille."]
+  })
 
   return (
     <main className="p-6">
       <Head>
         <title>{languages[language].slice(0, 4)} {title}</title>
       </Head>
-      <div className="flex">
+      <div className="flex top-0">
         <FormControl variant="filled" className="mr-3">
           <InputLabel id="demo-simple-select-label">Language</InputLabel>
           <Select
@@ -37,11 +40,11 @@ export default function Home() {
           <Button>Start</Button>
         </ButtonGroup>
       </div>
-      <div className="flex z-10 w-screen h-screen justify-center items-center">
-        <Draggable>
-          <Card className="p-3" variant="outlined">Parlez-moi de votre famille.</Card>
-        </Draggable>
-      </div>
+      <Draggable>
+        <div className="flex w-screen h-screen justify-center items-center">
+          <Question />
+        </div>
+      </Draggable>
     </main>
   );
 }
