@@ -14,11 +14,14 @@ export default function Home() {
   })
 
   return (
-    <main className="p-6">
+    <main>
       <Head>
         <title>{languages[language].slice(0, 4)} {title}</title>
+        <style>
+          {"html, body { margin: 0; height: 100%; overflow: hidden }"};
+        </style>
       </Head>
-      <div className="flex top-0">
+      <div className="flex p-6">
         <FormControl variant="filled" className="mr-3">
           <InputLabel id="demo-simple-select-label">Language</InputLabel>
           <Select
