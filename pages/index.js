@@ -10,7 +10,7 @@ export default function Home() {
   const [title, setTitle] = useState('Untitled');
   const [language, setLanguage] = useState('FR');
   const [answersQuestions, setAnswersQuestions] = useState({
-    "Ma famille, c'est pas une grande famille.": ["Parez-moi de votre famille."]
+    "Ma famille, c'est pas une grande famille.": ["Parez-moi de votre famille."],
   })
 
   return (
@@ -45,7 +45,7 @@ export default function Home() {
       </div>
       <Draggable>
         <div className="flex w-screen h-screen justify-center items-center">
-          <Question />
+          {Object.keys(answersQuestions).map(key => <Question question={key}/>)}
         </div>
       </Draggable>
     </main>
