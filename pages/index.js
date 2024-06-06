@@ -4,13 +4,13 @@ import Head from "next/head";
 import { useState } from "react";
 import languages from "@/languages/constants";
 import Question from "@/components/Question";
-import Draggable from "react-draggable";
 
 export default function Home() {
   const [title, setTitle] = useState('Untitled');
   const [language, setLanguage] = useState('FR');
   const [answersQuestions, setAnswersQuestions] = useState({
-    "Ma famille, c'est pas une grande famille.": ["Parez-moi de votre famille."],
+    "Parez-moi de votre famille.": ["Ma famille, c'est pas une grande famille."],
+    "Comment es-tu arrivé ici aujourd'hui ?": []
   })
 
   return (
@@ -43,11 +43,9 @@ export default function Home() {
           <Button>Start</Button>
         </ButtonGroup>
       </div>
-      <Draggable>
-        <div className="flex w-screen h-screen justify-center items-center">
-          {Object.keys(answersQuestions).map(key => <Question question={key}/>)}
-        </div>
-      </Draggable>
+      <div className="flex flex-col space-y-8 w-screen h-screen justify-center items-center">
+        {Object.keys(answersQuestions).map(key => <Question question={key}/>)}
+      </div>
     </main>
   );
 }
