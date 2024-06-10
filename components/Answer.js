@@ -1,7 +1,8 @@
 import React from "react";
 import Draggable from 'react-draggable';
-import { TextField, IconButton } from '@mui/material'
+import { TextField, Button, InputAdornment, IconButton } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
+import { VolumeUp } from "@mui/icons-material";
 
 export default function Answer(props) {
     return (
@@ -9,11 +10,17 @@ export default function Answer(props) {
             <div className="flex space-y-1 flex-col items-center">
             <div className="flex items-center space-x-3">
                 <h1 className="text-gray-600 cursor-grab text-lg font-bold">A</h1>
-                 <TextField label="Answer" multiline maxRows={Infinity} variant="outlined" />
+                 <TextField InputProps={{
+                    startAdornment: (
+                    <InputAdornment position="start">
+                        <IconButton>
+                            <VolumeUp />
+                        </IconButton>
+                    </InputAdornment>
+                    ),
+                }} style={{width: 450}} label="Answer" multiline maxRows={Infinity} defaultValue={props.answer == null? "" : props.answer} variant="outlined" />
             </div>
-            <IconButton>
-                <AddIcon />
-            </IconButton>
+                <Button variant="text" startIcon={<AddIcon />}>Follow-up</Button>
             </div>
         </Draggable>
     );

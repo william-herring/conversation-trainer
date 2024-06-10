@@ -4,14 +4,26 @@ import Head from "next/head";
 import { useState } from "react";
 import languages from "@/languages/constants";
 import Question from "@/components/Question";
+import Answer from "@/components/Answer";
 
 export default function Home() {
   const [title, setTitle] = useState('Untitled');
   const [language, setLanguage] = useState('FR');
-  const [answersQuestions, setAnswersQuestions] = useState({
-    "Parez-moi de votre famille.": ["Ma famille, c'est pas une grande famille."],
+  const [questionsAnswers, setQuestionsAnswers] = useState({
+    "Parez-moi de votre famille.": ["Ma famille, c'est pas une grande famille.", "Nous sommes quatre personnes. C'est mon père, ma mère, mon frère, et moi bien sur."],
     "Comment es-tu arrivé ici aujourd'hui ?": []
   })
+
+  const setAnswer = (question, answer) => {
+    console.log('called');
+
+    let newMap = {...questionsAnswers};
+    let answers = newMap[question];
+    answers.push(answer);
+    newMap[question] = answers;
+    setQuestionsAnswers(newMap);
+    console.log(questionsAnswers);
+  }
 
   return (
     <main>
@@ -44,7 +56,18 @@ export default function Home() {
         </ButtonGroup>
       </div>
       <div className="flex flex-col space-y-8 w-screen h-screen justify-center items-center">
-        {Object.keys(answersQuestions).map(key => <Question question={key}/>)}
+        {Object.keys(questionsAnswers).map(key => {
+          if (questionsAnswers[key].length > 0) {
+            return <div className="space-y-4">
+              <Question question={key} addAnswer={() => setAnswer(key, '')} />
+              <div className="flex flex-row space-x-8">
+                {questionsAnswers[key].map((a) => <Answer answer={a} />)}
+              </div>
+            </div>
+          } else {
+            return <Question question={key} addAnswer={() => setAnswer(key, '')} />  
+          }
+        })}
       </div>
     </main>
   );
