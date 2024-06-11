@@ -57,9 +57,9 @@ export default function Home() {
         </ButtonGroup>
       </div>
       <div className="flex flex-col space-y-8 w-screen h-screen justify-center items-center">
-        {Object.keys(questionsAnswers).map(key => {
+        {Object.keys(questionsAnswers, index).map(key => {
           if (questionsAnswers[key].length > 0) {
-            return <div className="space-y-4">
+            return <div key={index*10} className="space-y-4">
               <Xwrapper>
                 <Question key={key} id={key} question={key} addAnswer={() => setAnswer(key, '')} />
                 <div className="flex flex-row space-x-8">
