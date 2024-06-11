@@ -61,15 +61,15 @@ export default function Home() {
           if (questionsAnswers[key].length > 0) {
             return <div className="space-y-4">
               <Xwrapper>
-                <Question id={key} question={key} addAnswer={() => setAnswer(key, '')} />
+                <Question key={key} id={key} question={key} addAnswer={() => setAnswer(key, '')} />
                 <div className="flex flex-row space-x-8">
-                  {questionsAnswers[key].map((a, index) => <Answer id={a + index.toString()} answer={a} />)}
+                  {questionsAnswers[key].map((a, index) => <Answer key={a + index.toString()} id={a + index.toString()} answer={a} />)}
                 </div>
-                {questionsAnswers[key].map((end, index) => <Xarrow zIndex={-5} lineColor="grey" headColor="grey" strokeWidth={2} start={key} end={end + index} />)}
+                {questionsAnswers[key].map((end, index) => <Xarrow key={index} zIndex={-5} lineColor="grey" headColor="grey" strokeWidth={2} start={key} end={end + index} />)}
               </Xwrapper>
             </div>
           } else {
-            return <Question id={key} question={key} addAnswer={() => setAnswer(key, 'Votre reponse...')} />  
+            return <Question key={key} id={key} question={key} addAnswer={() => setAnswer(key, 'Votre reponse...')} />  
           }
         })}
       </div>
