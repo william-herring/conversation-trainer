@@ -69,7 +69,7 @@ export default function Home() {
               </Xwrapper>
             </div>
           } else {
-            return <Question question={key} addAnswer={() => setAnswer(key, 'Votre reponse...')} />  
+            return <Question id={key} question={key} addAnswer={() => setAnswer(key, 'Votre reponse...')} />  
           }
         })}
       </div>
