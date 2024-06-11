@@ -5,6 +5,7 @@ import { useState } from "react";
 import languages from "@/languages/constants";
 import Question from "@/components/Question";
 import Answer from "@/components/Answer";
+import Xarrow, { Xwrapper } from 'react-xarrows';
 
 export default function Home() {
   const [title, setTitle] = useState('Untitled');
@@ -59,13 +60,16 @@ export default function Home() {
         {Object.keys(questionsAnswers).map(key => {
           if (questionsAnswers[key].length > 0) {
             return <div className="space-y-4">
-              <Question question={key} addAnswer={() => setAnswer(key, '')} />
-              <div className="flex flex-row space-x-8">
-                {questionsAnswers[key].map((a) => <Answer answer={a} />)}
-              </div>
+              <Xwrapper>
+                <Question id={key} question={key} addAnswer={() => setAnswer(key, '')} />
+                <div className="flex flex-row space-x-8">
+                  {questionsAnswers[key].map((a, index) => <Answer id={a + index.toString()} answer={a} />)}
+                </div>
+                {questionsAnswers[key].map((end, index) => <Xarrow zIndex={-5} lineColor="grey" headColor="grey" strokeWidth={2} start={key} end={end + index} />)}
+              </Xwrapper>
             </div>
           } else {
-            return <Question question={key} addAnswer={() => setAnswer(key, '')} />  
+            return <Question question={key} addAnswer={() => setAnswer(key, 'Votre reponse...')} />  
           }
         })}
       </div>
