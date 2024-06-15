@@ -6,13 +6,17 @@ import { useState } from "react";
 import languages from "@/languages/constants";
 import Question from "@/components/Question";
 import Answer from "@/components/Answer";
+import GoogleDriveDialog from "@/components/GoogleDriveDialog";
 import Xarrow, { Xwrapper } from 'react-xarrows';
+import AddToDriveIcon from '@mui/icons-material/AddToDrive';
 
 export default function Home() {
   const [title, setTitle] = useState('Untitled');
   const [language, setLanguage] = useState('FR');
+  const [googleDriveSetUp, setGoogleDriveSetUp] = useState(false);
+  const [googleDriveDialogOpen, setGoogleDriveDialogOpen] = useState(false);
   const [questionsAnswers, setQuestionsAnswers] = useState({
-    "Parez-moi de votre famille.": ["Ma famille, c'est pas une grande famille.", "Nous sommes quatre personnes. C'est mon père, ma mère, mon frère, et moi bien sur."],
+    "Parlez-moi de votre famille.": ["Ma famille, c'est pas une grande famille.", "Nous sommes quatre personnes. C'est mon père, ma mère, mon frère, et moi bien sur."],
     "Comment es-tu arrivé ici aujourd'hui ?": []
   })
 
@@ -52,10 +56,16 @@ export default function Home() {
           </Select>
         </FormControl>
         <TextField label="Title" defaultValue="Untitled" variant="filled" onChange={(e) => setTitle(e.target.value)} />
-        <div className="flex items-center ml-3 text-xs text-gray-600">
-          <CheckIcon fontSize="extra-small" />
-          <p className="ml-1">Saved 1m ago</p>
-        </div>
+        {googleDriveSetUp?
+          <div className="flex items-center ml-3 text-xs text-gray-600">
+            <CheckIcon fontSize="extra-small" />
+            <p className="ml-1">Saved 1m ago</p>
+          </div> : 
+          <button className="flex items-center ml-3 text-xs text-gray-600" onClick={() => setGoogleDriveDialogOpen(true)}>
+            <AddToDriveIcon fontSize="extra-small" />
+            <p className="ml-1">Set up autosave with Google Drive</p>
+          </button> 
+        }
         <ButtonGroup className="ml-auto right-0" variant="contained">
           <Button><SettingsIcon /></Button>
           <Button>Start</Button>
@@ -78,6 +88,7 @@ export default function Home() {
           }
         })}
       </div>
+      <GoogleDriveDialog open={googleDriveDialogOpen} onClose={() => setGoogleDriveDialogOpen(false)} />
     </main>
   );
 }
