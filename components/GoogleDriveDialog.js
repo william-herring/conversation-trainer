@@ -1,7 +1,6 @@
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import { DialogContent, DialogContentText, DialogActions, Button } from '@mui/material';
-import { Typography } from '@mui/material';
 import { useState } from 'react';
 
 export default function GoogleDriveDialog(props) {
